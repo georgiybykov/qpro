@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :set_question
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
   # GET /answers
@@ -24,7 +25,7 @@ class AnswersController < ApplicationController
   # POST /answers
   # POST /answers.json
   def create
-    @answer = Answer.new(answer_params)
+    @answer = Answer.create(answer_params)
 
     respond_to do |format|
       if @answer.save
@@ -65,6 +66,10 @@ class AnswersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
       @answer = Answer.find(params[:id])
+    end
+
+    def set_question
+      @question = Question.find(params[:question_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
