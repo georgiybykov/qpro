@@ -1,0 +1,17 @@
+= form_with(model:[@question, answer], local: true) do |form|
+  - if answer.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(answer.errors.count, "error")
+        prohibited this answer from being saved:
+      %ul
+        - answer.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :body
+    = form.text_area :body, id: :answer_body
+  .field
+    = form.label :question_id
+    = form.text_field :question_id, id: :answer_question_id
+  .actions
+    = form.submit
