@@ -4,23 +4,15 @@ class AnswersController < ApplicationController
 
   respond_to :json, :html
 
-  def index
-    respond_with(@answers = Answer.all)
-  end
-
   def show
-  end
-
-  def new
-    respond_with(@answer = Answer.new)
   end
 
   def edit
   end
 
   def create
-    @answer = Answer.create(answer_params)
-    respond_with(@answer)
+    @answer = @question.answers.create(answer_params)
+    respond_with(@answer, location: @question)
   end
 
   def update
@@ -34,16 +26,14 @@ class AnswersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer
-      @answer = Answer.find(params[:id])
-    end
-
     def set_question
       @question = Question.find(params[:question_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def set_answer
+      @answer = @question.answers.find(params[:id])
+    end
+
     def answer_params
       params.require(:answer).permit(:body, :question_id)
     end
