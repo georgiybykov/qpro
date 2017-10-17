@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
-  respond_to :json, :html
+  respond_to :json, :html, :js
 
   def index
     respond_with(@questions = Question.all)

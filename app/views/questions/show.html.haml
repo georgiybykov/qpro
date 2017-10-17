@@ -14,7 +14,7 @@
 
 .row
   .col-md-6
-    = form_with(model: [@question, @answer], local: true) do |form|
+    = form_with(model: [@question, @answer]) do |form|
       - if @answer.errors.any?
         #error_explanation
           %h4

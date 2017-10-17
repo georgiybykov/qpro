@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   before_action :set_question
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
-  respond_to :json, :html
+  respond_to :json, :html, :js
 
   def show
   end
