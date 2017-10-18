@@ -9,23 +9,27 @@
   %a.list-group-item.active
     = 'Answers:'
   - @question.answers.each do |answer|
-    %a.list-group-item
-      = answer.body
+    - if answer.body.present?
+      %a.list-group-item
+        = answer.body
 
 .row
   .col-md-6
-    = form_with(model: [@question, @answer]) do |form|
-      - if @answer.errors.any?
-        #error_explanation
-          %h4
-            = pluralize(@answer.errors.count, 'error')
-            prohibited this @answer from being saved:
-          %ul
-            - @answer.errors.full_messages.each do |message|
-              %li= message
-      .field
-        = form.label :body
-        = form.text_area :body, id: :answer_body, class: 'form-control'
+  / = form_with(model: [@question, @answer]) do |form|
+  /   - if @answer.errors.any?
+  /     #error_explanation
+  /       %h4
+  /         = pluralize(@answer.errors.count, 'error')
+  /         prohibited this @answer from being saved:
+  /       %ul
+  /         - @answer.errors.full_messages.each do |message|
+  /           %li= message
+  /   .field
+  /     = form.label :body
+  /     = form.text_area :body, id: :answer_body, class: 'form-control'
 
-      .actions
-        = form.submit 'Add answer', class: 'btn btn-primary mt-15'
+  /   .actions
+  /     = form.submit 'Add answer', class: 'btn btn-primary mt-15'
+  %textarea.form-control#answer_body
+  %input#question_id{ value: @question.id, hidden: true }
+  %button.btn.btn-primary.mt-15.create_answer= 'Add answer'

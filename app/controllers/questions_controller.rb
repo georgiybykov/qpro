@@ -1,6 +1,7 @@
+# Comment
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: %i[show edit update destroy]
 
   respond_to :json, :html, :js
 
@@ -17,6 +18,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    # method
   end
 
   def create
@@ -35,13 +37,12 @@ class QuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def question_params
-      params.require(:question).permit(:body)
-    end
+  def set_question
+    @question = Question.find(params[:id])
+  end
+
+  def question_params
+    params.require(:question).permit(:body)
+  end
 end
