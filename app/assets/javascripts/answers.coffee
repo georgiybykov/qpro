@@ -12,5 +12,5 @@ $ ->
       data: { answer: { body: answer_body } }
       dataType: "json"
       success: (data) ->
-        $('.answers').append(" <a href='' class='list-group-item'>#{answer_body}</a> ")
+        $('.answers').append("<a href='' class='list-group-item'>#{answer_body}</a>")
 
